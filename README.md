@@ -51,3 +51,4 @@ We feel that a welcoming open community is important and welcome contributions.
 3. Review our [coding style](https://bookkeeper.apache.org/community/coding_guide/) and follow our [pull requests](https://github.com/apache/bookkeeper/pulls) to learn more about our conventions.
 
 4. Make your changes according to our [contributing guide](https://bookkeeper.apache.org/community/contributing/)
+5. a
