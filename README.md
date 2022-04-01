@@ -42,6 +42,7 @@ For filing bugs, suggesting improvements, or requesting new features, help us ou
 
 We feel that a welcoming open community is important and welcome contributions.
 
+
 ### Contributing Code
 
 1. See our [installation guide](https://bookkeeper.apache.org/docs/latest/getting-started/installation/) to get your local environment setup.
