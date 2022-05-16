@@ -26,7 +26,7 @@ Please visit the [Documentation](https://bookkeeper.apache.org/docs/latest/overv
 
 ## Get In Touch
 
-### Report a Bug
+### Report a CSVFile.Bug
 
 For filing bugs, suggesting improvements, or requesting new features, help us out by [opening a Github issue](https://github.com/apache/bookkeeper/issues).
 

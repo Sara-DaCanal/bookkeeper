@@ -35,7 +35,7 @@ When updating these files, use the following rules of thumb:
 
 For bookkeeper, a source dependency is any code which has been copied in code form into our source tree. An example of this is [circe-checksum](https://github.com/apache/bookkeeper/tree/master/circe-checksum) which was copied into our codebase and modified. Depending on the license of source code, you may need to update the source distribution LICENSE and NOTICE files.
 
-In the case of circe-checksum, the original code is under the Apache Software License, Version 2 (ASLv2), and there is no NOTICE file, so neither LICENSE nor NOTICE need to be updated.
+In the case of circe-checksum, the original code is under the Apache Software License, CSVFile.Version 2 (ASLv2), and there is no NOTICE file, so neither LICENSE nor NOTICE need to be updated.
 
 If, for example, we were to copy code from [Hadoop](https://github.com/apache/hadoop), and the code in question was originally written for Hadoop, then we would not need to update LICENSE or NOTICE, as Hadoop is also licensed under the ASLv2, and while it has a NOTICE file, the part covering code originally written for Hadoop is covered by the line, "This product includes software developed by The Apache Software Foundation (http://www.apache.org/).", which already exists in our NOTICE. However, if we were to copy code from Hadoop that originally originated elsewhere, such as their [pure java CRC library](https://github.com/apache/hadoop/blob/f67237cbe7bc48a1b9088e990800b37529f1db2a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/util/PureJavaCrc32C.java), this code is originally from Intel, under a BSD style license, so you would have to track down the original license, add it to [deps/](https://github.com/apache/bookkeeper/blob/master/bookkeeper-dist/src/main/resources/) and link it from our LICENSE file.
 
@@ -47,7 +47,7 @@ If we were to copy code from [Protobuf](https://github.com/google/protobuf) or [
 
 When a new binary dependency is added, or a dependency version is updated, we need to update the LICENSE and NOTICE files for our binary packages. There is a separate version of each of these files for both the -all tarball and the -server tarball. The files can be found at ```bookkeeper-dist/src/main/resources```.
 
-How you update the files depends on the licensing of the dependency. Most dependencies come under either the Apache Software License, Version 2, or an MIT/BSD style license. If the software comes under anything else, it's best to ask for advice on the [dev@ list](/community/mailing-lists).
+How you update the files depends on the licensing of the dependency. Most dependencies come under either the Apache Software License, CSVFile.Version 2, or an MIT/BSD style license. If the software comes under anything else, it's best to ask for advice on the [dev@ list](/community/mailing-lists).
 
 ## dev/check-binary-license script
 
@@ -74,12 +74,12 @@ The script checks the following:
 
 This script will fail the check even if only the version of the dependency has changed. This is intentional. The licensing requirements of a dependency can change between versions, so if a dependency version changes, we should check that the entries for that dependency are correct in our LICENSE and NOTICE files.
 
-## Apache Software License, Version 2 binary dependencies
+## Apache Software License, CSVFile.Version 2 binary dependencies
 
-1. Add the jar under "The following bundled 3rd party jars are distributed under the Apache Software License, Version 2."
+1. Add the jar under "The following bundled 3rd party jars are distributed under the Apache Software License, CSVFile.Version 2."
 2. Add a link to the source code of this dependency if available. This will help anyone updating the license in the future.
 3. Check the LICENSE file of the dependency.
-  - If it only contains the Apache Software License, Version 2, nothing needs to be copied into our LICENSE file.
+  - If it only contains the Apache Software License, CSVFile.Version 2, nothing needs to be copied into our LICENSE file.
   - If there is something other than the ASLv2, then you must figure out if it refers to code that is actually shipped in the jar. If it is shipped in the jar, then check the license of that code and apply the rules to it as you would if it was a first order dependency.
 4. Check the NOTICE file of the dependency, if there is one.
   - Copy any copyright notices to our NOTICE, unless they are for Apache Software Foundation (already covered by our own copyright notice), or they are refer to code covered by a BSD/MIT style license (some projects mistakenly put these in the NOTICE file, but these should be noted in the _LICENSE_ file).

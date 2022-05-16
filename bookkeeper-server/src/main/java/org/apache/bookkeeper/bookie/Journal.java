@@ -4,7 +4,7 @@
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
  * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
+ * to you under the Apache License, CSVFile.Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
@@ -285,7 +285,7 @@ public class Journal extends BookieCriticalThread implements CheckpointSource {
         /**
          * Process a journal entry.
          *
-         * @param journalVersion Journal Version
+         * @param journalVersion Journal CSVFile.Version
          * @param offset File offset of the journal entry
          * @param entry Journal Entry
          * @throws IOException

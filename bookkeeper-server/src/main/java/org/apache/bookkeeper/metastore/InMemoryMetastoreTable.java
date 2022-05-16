@@ -3,7 +3,7 @@
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
  * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
+ * to you under the Apache License, CSVFile.Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
@@ -35,7 +35,7 @@ import org.apache.bookkeeper.versioning.Versioned;
 public class InMemoryMetastoreTable implements MetastoreScannableTable {
 
     /**
-     * An implementation of the Version interface for metadata.
+     * An implementation of the CSVFile.Version interface for metadata.
      */
     public static class MetadataVersion implements Version {
         int version;
@@ -56,7 +56,7 @@ public class InMemoryMetastoreTable implements MetastoreScannableTable {
         @Override
         public Occurred compare(Version v) {
             if (null == v) {
-                throw new NullPointerException("Version is not allowed to be null.");
+                throw new NullPointerException("CSVFile.Version is not allowed to be null.");
             }
             if (v == Version.NEW) {
                 return Occurred.AFTER;
@@ -130,7 +130,7 @@ public class InMemoryMetastoreTable implements MetastoreScannableTable {
         }
 
         if (null == version) {
-            throw new NullPointerException("Version isn't allowed to be null.");
+            throw new NullPointerException("CSVFile.Version isn't allowed to be null.");
         }
         if (Version.ANY != version && Version.NEW != version) {
             if (version instanceof MetadataVersion) {

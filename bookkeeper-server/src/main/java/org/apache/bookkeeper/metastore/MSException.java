@@ -3,7 +3,7 @@
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
  * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
+ * to you under the Apache License, CSVFile.Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
@@ -32,7 +32,7 @@ public abstract class MSException extends Exception {
      */
     public enum Code {
         OK (0, "OK"),
-        BadVersion (-1, "Version conflict"),
+        BadVersion (-1, "CSVFile.Version conflict"),
         NoKey (-2, "Key does not exist"),
         KeyExists (-3, "Key exists"),
         NoEntries (-4, "No entries found"),

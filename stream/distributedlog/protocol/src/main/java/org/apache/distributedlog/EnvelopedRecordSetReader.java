@@ -3,7 +3,7 @@
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
  * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
+ * to you under the Apache License, CSVFile.Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
@@ -64,7 +64,7 @@ class EnvelopedRecordSetReader implements LogRecordSet.Reader {
         int metadata = src.readInt();
         int version = metadata & METADATA_VERSION_MASK;
         if (version != VERSION) {
-            throw new IOException(String.format("Version mismatch while reading. Received: %d,"
+            throw new IOException(String.format("CSVFile.Version mismatch while reading. Received: %d,"
                 + " Required: %d", version, VERSION));
         }
         int codecCode = metadata & METADATA_COMPRESSION_MASK;

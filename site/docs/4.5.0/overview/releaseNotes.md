@@ -214,7 +214,7 @@ For the complete list of commands in `BookieShell`, please read [BookKeeper CLI 
 </li>
 </ul>
                             
-#### Bug
+#### CSVFile.Bug
 <ul>
 <li>[<a href='https://issues.apache.org/jira/browse/BOOKKEEPER-852'>BOOKKEEPER-852</a>] -         Release LedgerDescriptor and master-key objects when not used anymore
 </li>

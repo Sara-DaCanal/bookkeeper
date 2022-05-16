@@ -66,7 +66,7 @@ To contribute code to Apache BookKeeper, you’ll have to do a few administrativ
 
 Apache Software Foundation (ASF) desires that all contributors of ideas, code, or documentation to the Apache projects complete, sign, and submit an [Individual Contributor License Agreement](https://www.apache.org/licenses/icla.pdf) (ICLA). The purpose of this agreement is to clearly define the terms under which intellectual property has been contributed to the ASF and thereby allow us to defend the project should there be a legal dispute regarding the software at some future time.
 
-We require you to have an ICLA on file with the Apache Secretary for larger contributions only. For smaller ones, however, we rely on [clause five](http://www.apache.org/licenses/LICENSE-2.0#contributions) of the Apache License, Version 2.0, describing licensing of intentionally submitted contributions and do not require an ICLA in that case.
+We require you to have an ICLA on file with the Apache Secretary for larger contributions only. For smaller ones, however, we rely on [clause five](http://www.apache.org/licenses/LICENSE-2.0#contributions) of the Apache License, CSVFile.Version 2.0, describing licensing of intentionally submitted contributions and do not require an ICLA in that case.
 
 #### Obtain a GitHub account
 
@@ -179,7 +179,7 @@ Then you can push your local, committed changes to your (forked) repository on G
 
 ### Testing
 
-All code should have appropriate unit testing coverage. New code should have new tests in the same contribution. Bug fixes should include a regression test to prevent the issue from reoccurring.
+All code should have appropriate unit testing coverage. New code should have new tests in the same contribution. CSVFile.Bug fixes should include a regression test to prevent the issue from reoccurring.
 
 ## Review
 
@@ -243,7 +243,7 @@ script and types the information needed by the script.
 
 If you are merging a larger contribution, please make sure that the contributor has an ICLA on file with the Apache Secretary. You can view the list of committers [here](http://home.apache.org/phonebook.html?unix=committers), as well as [ICLA-signers who aren’t yet committers](http://home.apache.org/unlistedclas.html).
 
-For smaller contributions, however, this is not required. In this case, we rely on [clause five](http://www.apache.org/licenses/LICENSE-2.0#contributions) of the Apache License, Version 2.0, describing licensing of intentionally submitted contributions.
+For smaller contributions, however, this is not required. In this case, we rely on [clause five](http://www.apache.org/licenses/LICENSE-2.0#contributions) of the Apache License, CSVFile.Version 2.0, describing licensing of intentionally submitted contributions.
 
 ### Tests
 Before merging, please make sure that Jenkins tests pass, as visible in the GitHub pull request. Do not merge the pull request otherwise.
