@@ -22,7 +22,7 @@ The main features in 4.9.0 cover are around following areas:
 - Operations
 - Builds & Testing
 - Enhancements
-- CSVFile.Bug Fixes
+- csvfile.Bug Fixes
 
 ### Dependencies Changes
 
@@ -117,7 +117,7 @@ used for documenting stats added across the project.
 - [Issue 1808: Allow to configure sticky reads](https://github.com/apache/bookkeeper/pull/1808)
 - [Issue 1754: Netty allocator wrapper](https://github.com/apache/bookkeeper/pull/1754)
 
-### CSVFile.Bug Fixes
+### csvfile.Bug Fixes
 
 #### Bookie
 

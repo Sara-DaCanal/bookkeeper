@@ -3,7 +3,7 @@ id: releases
 title: Apache BookKeeper Releases
 ---
 
-CSVFile.Version **{{ site.latest_release }}** is the [latest release](#latest-release) of BookKeeper. The current [stable version](#latest-stable-release) is **{{ site.stable_release }}**.
+csvfile.Version **{{ site.latest_release }}** is the [latest release](#latest-release) of BookKeeper. The current [stable version](#latest-stable-release) is **{{ site.stable_release }}**.
 
 > You can verify your download by following these [procedures](http://www.apache.org/info/verification.html) and using these [KEYS]({{ site.dist_base_url }}/KEYS).
 

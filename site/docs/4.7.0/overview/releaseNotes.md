@@ -25,7 +25,7 @@ The main features in 4.7.0 cover are around following areas:
 - Performance
 - Operations
 - Builds & Testing
-- CSVFile.Bug Fixes
+- csvfile.Bug Fixes
 
 ### Dependencies Changes
 

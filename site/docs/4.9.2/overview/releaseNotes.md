@@ -13,7 +13,7 @@ this release are summarized below.
 
 No dependency change.
 
-### CSVFile.Bug Fixes
+### csvfile.Bug Fixes
 
 - [Issue #1973: [DLOG] Avoid double read in readahead](https://github.com/apache/bookkeeper/pull/1973)
 - [Issue #1952: Filter empty string for networkTopologyScriptFileName](https://github.com/apache/bookkeeper/pull/1952)

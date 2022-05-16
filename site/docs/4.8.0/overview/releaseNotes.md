@@ -18,7 +18,7 @@ The main features in 4.8.0 are around following areas:
 - Durability
 - ExplicitLAC feature
 - New Table Storage Service
-- CSVFile.Bug Fixes
+- csvfile.Bug Fixes
 
 
 ### New WriteFlag DEFERRED_SYNC
