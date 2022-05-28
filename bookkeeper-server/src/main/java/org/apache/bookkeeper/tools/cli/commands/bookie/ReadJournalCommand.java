@@ -3,7 +3,7 @@
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
  * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
+ * to you under the Apache License, CSVFile.Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
@@ -201,7 +201,7 @@ public class ReadJournalCommand extends BookieCommand<ReadJournalCommand.ReadJou
             @Override
             public void process(int journalVersion, long offset, ByteBuffer entry) throws IOException {
                 if (!printJournalVersion) {
-                    LOG.info("Journal Version : " + journalVersion);
+                    LOG.info("Journal CSVFile.Version : " + journalVersion);
                     printJournalVersion = true;
                 }
                 FormatUtil

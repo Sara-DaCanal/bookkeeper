@@ -3,7 +3,7 @@
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
  * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
+ * to you under the Apache License, CSVFile.Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
@@ -125,7 +125,7 @@ public interface MetastoreTable {
      * @param value
      *          Value to update.
      * @param version
-     *          Version specified to update.
+     *          CSVFile.Version specified to update.
      * @param cb
      *          Callback to return new version after updated.
      * @param ctx
@@ -150,7 +150,7 @@ public interface MetastoreTable {
      * @param key
      *          Key Name.
      * @param version
-     *          Version specified to remove.
+     *          CSVFile.Version specified to remove.
      * @param cb
      *          Callback to return all fields of the key
      * @param ctx

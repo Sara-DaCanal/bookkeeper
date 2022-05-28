@@ -14,7 +14,7 @@ layout: community
 {% capture stable_source_url %}{{ archive_url }}/bookkeeper-{{ site.stable_release }}/bookkeeper-{{ site.stable_release }}-src.tar.gz{% endcapture %}
 {% capture stable_bin_url %}{{ archive_url }}/bookkeeper-{{ site.stable_release }}/bookkeeper-server-{{ site.stable_release }}-bin.tar.gz{% endcapture %}
 
-Version **{{ site.latest_release }}** is the [latest release](#latest-release) of BookKeeper. The current [stable version](#latest-stable-release) is **{{ site.stable_release }}**.
+csvfile.Version **{{ site.latest_release }}** is the [latest release](#latest-release) of BookKeeper. The current [stable version](#latest-stable-release) is **{{ site.stable_release }}**.
 
 > You can verify your download by following these [procedures](http://www.apache.org/info/verification.html) and using these [KEYS](https://www.apache.org/dist/bookkeeper/KEYS).
 
@@ -42,7 +42,7 @@ Binary | [bookkeeper-server-{{ site.stable_release }}-bin.tar.gz]({{ stable_bin_
 {% capture root_url %}https://archive.apache.org/dist/bookkeeper/bookkeeper-{{ version }}{% endcapture %}
 {% capture src_root %}{{ root_url }}/bookkeeper-{{ version }}-src.tar.gz{% endcapture %}
 {% capture bin_root %}{{ root_url }}/bookkeeper-server-{{ version }}-bin.tar.gz{% endcapture %}
-### Version {{ version }}
+### csvfile.Version {{ version }}
 
 Release | Link | Crypto files
 :-------|:-----|:------------

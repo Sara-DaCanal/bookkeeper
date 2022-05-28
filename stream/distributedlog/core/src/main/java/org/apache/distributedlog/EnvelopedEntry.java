@@ -3,7 +3,7 @@
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
  * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
+ * to you under the Apache License, CSVFile.Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
@@ -32,7 +32,7 @@ import org.apache.distributedlog.io.CompressionUtils;
  *
  * <p>Entry Structure:
  * ---------------
- * Bytes 0                                  : Version (Byte)
+ * Bytes 0                                  : CSVFile.Version (Byte)
  * Bytes 1 - (DATA = 1+Header.length-1)     : Header (Integer)
  * Bytes DATA - DATA+3                      : Payload Length (Integer)
  * BYTES DATA+4 - DATA+4+payload.length-1   : Payload (Byte[])
@@ -85,7 +85,7 @@ class EnvelopedEntry {
             throws IOException {
         byte version = src.readByte();
         if (version != CURRENT_VERSION) {
-            throw new IOException(String.format("Version mismatch while reading. Received: %d,"
+            throw new IOException(String.format("CSVFile.Version mismatch while reading. Received: %d,"
                 + " Required: %d", version, CURRENT_VERSION));
         }
         int flags = src.readInt();

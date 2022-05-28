@@ -381,7 +381,7 @@ this release are summarized below.
 
 No dependency change.
 
-#### Bug Fixes
+#### csvfile.Bug Fixes
 
 - [Issue #1973: [DLOG] Avoid double read in readahead](https://github.com/apache/bookkeeper/pull/1973)
 - [Issue #1952: Filter empty string for networkTopologyScriptFileName](https://github.com/apache/bookkeeper/pull/1952)
@@ -404,7 +404,7 @@ this release are summarized below.
 
 No dependency change.
 
-#### Bug Fixes
+#### csvfile.Bug Fixes
 
 - [Issue #1973: [DLOG] Avoid double read in readahead](https://github.com/apache/bookkeeper/pull/1973)
 - [Issue #1952: Filter empty string for networkTopologyScriptFileName](https://github.com/apache/bookkeeper/pull/1952)
@@ -436,7 +436,7 @@ The main features in 4.9.0 cover are around following areas:
 - Operations
 - Builds & Testing
 - Enhancements
-- Bug Fixes
+- csvfile.Bug Fixes
 
 #### Dependencies Changes
 
@@ -531,7 +531,7 @@ used for documenting stats added across the project.
 - [Issue 1808: Allow to configure sticky reads](https://github.com/apache/bookkeeper/pull/1808)
 - [Issue 1754: Netty allocator wrapper](https://github.com/apache/bookkeeper/pull/1754)
 
-#### Bug Fixes
+#### csvfile.Bug Fixes
 
 ##### Bookie
 
@@ -653,7 +653,7 @@ The main features in 4.8.0 are around following areas:
 - Durability
 - ExplicitLAC feature
 - New Table Storage Service
-- Bug Fixes
+- csvfile.Bug Fixes
 
 
 #### New WriteFlag DEFERRED_SYNC
@@ -837,7 +837,7 @@ The main features in 4.7.0 cover are around following areas:
 - Performance
 - Operations
 - Builds & Testing
-- Bug Fixes
+- csvfile.Bug Fixes
 
 #### Dependencies Changes
 
@@ -1283,7 +1283,7 @@ For the complete list of commands in `BookieShell`, please read [BookKeeper CLI 
 </li>
 </ul>
                             
-<b>Bug</b>
+<b>csvfile.Bug</b>
 <ul>
 <li>[<a href='https://issues.apache.org/jira/browse/BOOKKEEPER-852'>BOOKKEEPER-852</a>] -         Release LedgerDescriptor and master-key objects when not used anymore
 </li>

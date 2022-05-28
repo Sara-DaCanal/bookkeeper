@@ -158,7 +158,7 @@ The list of release-blocking issues is available at the [milestones page](https:
 * If the issue has not been resolved and it is acceptable to defer this until the next release, update the `Milestone` field to the new milestone you just created. Please consider discussing this with stakeholders and the dev@ mailing list, as appropriate.
 * If the issue has not been resolved and it is not acceptable to release until it is fixed, the release cannot proceed. Instead, work with the BookKeeper community to resolve the issue.
 
-### Change Python Client Version
+### Change Python Client csvfile.Version
 
 Before cutting a release, you need to update the python client version in
 [setup.py](https://github.com/apache/bookkeeper/blob/master/stream/clients/python/setup.py#L22)
@@ -205,7 +205,7 @@ For a minor release (for instance 4.5.1):
     BRANCH_NAME="branch-${MAJOR_VERSION}"
     DEVELOPMENT_VERSION="${NEXT_VERSION}-SNAPSHOT"
 
-Version represents the release currently underway, while next version specifies the anticipated next version to be released from that branch. Normally, 4.5.0 is followed by 4.6.0, while 4.5.0 is followed by 4.5.1.
+csvfile.Version represents the release currently underway, while next version specifies the anticipated next version to be released from that branch. Normally, 4.5.0 is followed by 4.6.0, while 4.5.0 is followed by 4.5.1.
 
 #### Create branch for major release
 

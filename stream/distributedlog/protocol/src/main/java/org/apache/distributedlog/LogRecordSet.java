@@ -3,7 +3,7 @@
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
  * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
+ * to you under the Apache License, CSVFile.Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
@@ -39,7 +39,7 @@ import org.apache.distributedlog.io.CompressionCodec;
  * Bytes 16 - 16+length-1       : Payload
  * ------------------------------------------------------
  *
- * Metadata: Version and Flags // 32 Bits
+ * Metadata: CSVFile.Version and Flags // 32 Bits
  * --------------------------------------
  * 0 ... 0 0 0 0 0
  *             |_|
@@ -61,7 +61,7 @@ public class LogRecordSet {
           + Integer.BYTES + Integer.BYTES /* Lengths: (decompressed + compressed) */
             ;
 
-    // Version
+    // CSVFile.Version
     static final int VERSION = 0x1000;
 
     static final int METADATA_OFFSET = 0;
@@ -80,7 +80,7 @@ public class LogRecordSet {
         int metadata = buffer.getInt(METADATA_OFFSET);
         int version = (metadata & METADATA_VERSION_MASK);
         if (version != VERSION) {
-            throw new IOException(String.format("Version mismatch while reading. Received: %d,"
+            throw new IOException(String.format("CSVFile.Version mismatch while reading. Received: %d,"
                 + " Required: %d", version, VERSION));
         }
         return buffer.getInt(COUNT_OFFSET);
