@@ -71,6 +71,7 @@
     <module>shaded</module>
     <module>microbenchmarks</module>
     <module>tests</module>
+    <module>tests-coverage</module>
   </modules>
   <mailingLists>
     <mailingList>
@@ -112,6 +113,7 @@
     <testRetryCount>2</testRetryCount>
     <sonar.organization>sara-dacanal</sonar.organization>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/tests-coverage/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     <nar.aolProperties>${project.basedir}/bookkeeper/aolProperties</nar.aolProperties>
     <!-- dependencies -->
     <arquillian-cube.version>1.18.2</arquillian-cube.version>
@@ -1050,8 +1052,8 @@
     </plugins>
   </build>
   <profiles>
-    <profile>
-      <!-- profile used by jenkins CI -->
+   <profile>
+      <!--profile used by jenkins CI -->
       <id>code-coverage</id>
       <build>
         <plugins>
@@ -1065,13 +1067,13 @@
             <artifactId>maven-surefire-plugin</artifactId>
             <version>${maven-surefire-plugin.version}</version>
             <configuration>
-              <!-- @{argLine} is a variable injected by JaCoCo-->
+              <!--@{argLine} is a variable injected by JaCoCo-->
               <argLine>@{argLine} -Xmx2G -Djava.net.preferIPv4Stack=true</argLine>
               <redirectTestOutputToFile>${redirectTestOutputToFile}</redirectTestOutputToFile>
               <forkCount>${forkCount.variable}</forkCount>
               <reuseForks>false</reuseForks>
               <forkedProcessTimeoutInSeconds>1800</forkedProcessTimeoutInSeconds>
-              <!-- we want build to complete even in case of failures -->
+              <!--we want build to complete even in case of failures-->
               <testFailureIgnore>true</testFailureIgnore>
             </configuration>
           </plugin>
@@ -1081,6 +1083,29 @@
             <version>0.8.0</version>
             <executions>
               <execution>
+                <goals>
+                  <goal>prepare-agent</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>JaCoCo-coverage</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.7</version>
+            <executions>
+              <execution>
+                <id>prepare-agent</id>
                 <goals>
                   <goal>prepare-agent</goal>
                 </goals>
