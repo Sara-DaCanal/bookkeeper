@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ba-dua-report
-          path: lang/java/**/target/badua.xml
+          path: bookkeeper-server/target/badua.xml
           if-no-files-found: error
           retention-days: 90
   build:
