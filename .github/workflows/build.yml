@@ -24,7 +24,7 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: Install ba-dua
-        run: ./installBaDua.sh 0.6.0
+        run: ./ba-dua-report
       - name: Build and coverage with ba-dua
         run: mvn -B verify -P ba-dua-coverage
       - name: Upload Ba-Dua report
