@@ -19,7 +19,7 @@
 # $1: ba-dua release
 
 WORKDIR=$(mktemp -d)
-BADUA_RELEASE="ba-dua-0.7.0"
+BADUA_RELEASE="ba-dua-0.6.0"
 BADUA_FROM="https://github.com/saeg/ba-dua/archive/refs/tags/$BADUA_RELEASE.zip"
 toUnzip="$BADUA_RELEASE.zip"
 
