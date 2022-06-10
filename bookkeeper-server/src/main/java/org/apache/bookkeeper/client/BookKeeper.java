@@ -407,14 +407,14 @@ public class BookKeeper implements org.apache.bookkeeper.client.api.BookKeeper {
      */
     @SuppressWarnings("deprecation")
     @VisibleForTesting
-    BookKeeper(ClientConfiguration conf,
-                       ZooKeeper zkc,
-                       EventLoopGroup eventLoopGroup,
-                       ByteBufAllocator byteBufAllocator,
-                       StatsLogger rootStatsLogger,
-                       DNSToSwitchMapping dnsResolver,
-                       HashedWheelTimer requestTimer,
-                       FeatureProvider featureProvider)
+    protected BookKeeper(ClientConfiguration conf,
+                         ZooKeeper zkc,
+                         EventLoopGroup eventLoopGroup,
+                         ByteBufAllocator byteBufAllocator,
+                         StatsLogger rootStatsLogger,
+                         DNSToSwitchMapping dnsResolver,
+                         HashedWheelTimer requestTimer,
+                         FeatureProvider featureProvider)
             throws IOException, InterruptedException, BKException {
         this.conf = conf;
         // initialize feature provider

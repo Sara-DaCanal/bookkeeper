@@ -1,8 +1,8 @@
 package org.apache;
 
 import org.apache.bookkeeper.conf.ServerConfiguration;
-import org.apache.utils.ServerTester;
-import org.apache.utils.TestBKConfiguration;
+import org.apache.client.utils.ServerTester;
+import org.apache.client.utils.TestBKConfiguration;
 import org.junit.Test;
 
 import java.nio.charset.StandardCharsets;

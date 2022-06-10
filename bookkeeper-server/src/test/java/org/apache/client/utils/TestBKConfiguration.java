@@ -1,4 +1,4 @@
-package org.apache.utils;
+package org.apache.client.utils;
 
 //IT ORIGINALLY WAS AN APACHE-BOOKKEEPER TEST CLASS
 

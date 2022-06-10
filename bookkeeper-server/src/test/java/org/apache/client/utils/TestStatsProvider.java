@@ -1,4 +1,4 @@
-package org.apache.utils;
+package org.apache.client.utils;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
