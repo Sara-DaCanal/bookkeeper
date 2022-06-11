@@ -46,7 +46,7 @@ public class LedgerHandleTest extends BookKeeperClusterTestCase{
         return Arrays.asList(new Object[][]{
                 {Data.NULL, 0, 1, Cb.VALID, Exc.NULL},
                 {Data.VOID, 0, 1, Cb.VALID, Exc.OUT_OF_BOUND},
-                //{Data.LENGTH1, 0, 1, Cb.NULL, Exc.NULL},
+                {Data.LENGTH1, 0, 1, Cb.NULL, Exc.NULL},
                 {Data.LENGTH1, 0, 1, Cb.VALID, Exc.NO_EXC},
                 {Data.LENGTH1, -1, 0, Cb.VALID, Exc.OUT_OF_BOUND},
                 {Data.LENGTH1, 0, -1, Cb.VALID, Exc.OUT_OF_BOUND},
@@ -116,21 +116,18 @@ public class LedgerHandleTest extends BookKeeperClusterTestCase{
     @Test
     public void test() {
        try{
-           //long id = lh.getId();
-           //lh.close();
+            bkc.close();
            lh.asyncAddEntry(this.data, this.offset, this.length, this.cb, this.ctx);
-           //bkc.openLedger(id, BookKeeper.DigestType.CRC32, TEST_LEDGER_PASSWORD);
            Assert.assertFalse(isArrayIndexExceptionExpected || isNullPointerExpected);
        }catch (NullPointerException e){
            Assert.assertTrue(isNullPointerExpected);
-       }catch (ArrayIndexOutOfBoundsException e){
+       }catch (ArrayIndexOutOfBoundsException e) {
            Assert.assertTrue(isArrayIndexExceptionExpected);
-       /*} catch (BKException e) {
-           System.out.println("error1");
+       } catch (BKException e) {
+           e.printStackTrace();
        } catch (InterruptedException e) {
-          System.out.println("error2");*/
+           e.printStackTrace();
        }
-
     }
 
     private enum Data{
