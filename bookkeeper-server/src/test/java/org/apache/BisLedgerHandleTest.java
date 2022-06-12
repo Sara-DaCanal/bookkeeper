@@ -15,7 +15,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 
 @RunWith(Parameterized.class)
-public class LedgerHandleTest extends BookKeeperClusterTestCase{
+public class BisLedgerHandleTest extends BookKeeperClusterTestCase{
     private LedgerHandle lh;
     private byte[] data;
     private int offset;
@@ -30,7 +30,7 @@ public class LedgerHandleTest extends BookKeeperClusterTestCase{
     private static final Logger LOG = LoggerFactory.getLogger(LedgerHandleTest.class);
 
 
-    public LedgerHandleTest(Data data, int offset, int length, Cb cb, Exc isExceptionExpected) throws Exception {
+    public BisLedgerHandleTest(Data data, int offset, int length, Cb cb, Exc isExceptionExpected) throws Exception {
         super(3);
         configure(data, offset, length, cb, isExceptionExpected);
     }
@@ -109,19 +109,20 @@ public class LedgerHandleTest extends BookKeeperClusterTestCase{
 
     @Test
     public void test() {
-       try{
-           if(data.length==1 && offset==0) bkc.close();
-           lh.asyncAddEntry(this.data, this.offset, this.length, this.cb, this.ctx);
-           Assert.assertFalse(isArrayIndexExceptionExpected || isNullPointerExpected);
-       }catch (NullPointerException e){
-           Assert.assertTrue(isNullPointerExpected);
-       }catch (ArrayIndexOutOfBoundsException e) {
-           Assert.assertTrue(isArrayIndexExceptionExpected);
-       } catch (BKException e) {
-           e.printStackTrace();
-       } catch (InterruptedException e) {
-           e.printStackTrace();
-       }
+        try{
+            if(data.length==1 && offset==0) bkc.close();
+            lh.close();
+            lh.asyncAddEntry(this.data, this.offset, this.length, this.cb, this.ctx);
+            Assert.assertFalse(isArrayIndexExceptionExpected || isNullPointerExpected);
+        }catch (NullPointerException e){
+            Assert.assertTrue(isNullPointerExpected);
+        }catch (ArrayIndexOutOfBoundsException e) {
+            Assert.assertTrue(isArrayIndexExceptionExpected);
+        } catch (BKException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private enum Data{
@@ -137,3 +138,4 @@ public class LedgerHandleTest extends BookKeeperClusterTestCase{
 
 
 }
+

@@ -413,47 +413,6 @@
       </build>
     </profile>
 
-    <!--<profile>
-      <id>mutation-testing</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
-      <properties>
-        <withHistory>true</withHistory>
-        <pitest.version>1.8.0</pitest.version>
-      </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.pitest</groupId>
-            <artifactId>pitest-maven</artifactId>
-            <version>${pitest.version}</version>
-            <configuration>
-              <targetClasses>
-                <param>org.apache.bookkeeper.proto.PerChannelBookieClient</param>
-              </targetClasses>
-              <targetTests>
-                <param>org.apache.bookkeeper.proto.PerChannelBookieTest</param>
-                <param>org.apache.bookkeeper.proto.PerChannelBookieBisTest</param>
-                <param>org.apache.bookkeeper.proto.PerChannelBookieTrisTest</param>
-              </targetTests>
-              <avoidCallsTo>
-                <avoidCallsTo>org.slf4j</avoidCallsTo>
-              </avoidCallsTo>
-            </configuration>
-            <executions>
-              <execution>
-                <id>Generate PIT report</id>
-                <phase>test-compile</phase>
-                <goals>
-                  <goal>mutationCoverage</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>-->
 
   </profiles>
 </project>
