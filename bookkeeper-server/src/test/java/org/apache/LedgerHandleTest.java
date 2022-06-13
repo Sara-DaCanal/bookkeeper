@@ -57,7 +57,7 @@ public class LedgerHandleTest extends BookKeeperClusterTestCase{
         setUp();
         lh = bkc.createLedger(BookKeeper.DigestType.CRC32,
                 TEST_LEDGER_PASSWORD);
-        startNewBookie();
+        //startNewBookie();
         this.offset=offset;
         this.length=length;
         this.ctx = null;
