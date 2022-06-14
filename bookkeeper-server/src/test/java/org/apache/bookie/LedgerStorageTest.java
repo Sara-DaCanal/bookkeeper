@@ -1,4 +1,4 @@
-package org.apache;
+package org.apache.bookie;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -14,17 +14,16 @@ import org.junit.Test;
 import org.apache.bookkeeper.bookie.CheckpointSource.Checkpoint;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 
 import static org.apache.bookkeeper.bookie.BookKeeperServerStats.BOOKIE_SCOPE;
-import static org.apache.bookkeeper.bookie.EntryLogger.*;
 
 @RunWith(Parameterized.class)
-public class BisLedgerStorageTest {
+public class LedgerStorageTest {
     TestStatsProvider statsProvider = new TestStatsProvider();
     ServerConfiguration conf = TestBKConfiguration.newServerConfiguration();
     LedgerDirsManager ledgerDirsManager;
@@ -34,16 +33,29 @@ public class BisLedgerStorageTest {
     private long ledgerId;
     private long entryId;
     private boolean expected;
+    private boolean outOfBound;
 
-    public BisLedgerStorageTest(long ledgerId, long entryId) throws Exception {
-        configure(ledgerId, entryId);
+    public LedgerStorageTest(long ledgerId, long entryId, boolean expected, boolean outOfBound) throws Exception {
+        configure(ledgerId, entryId, expected, outOfBound);
     }
 
     @Parameterized.Parameters
     public static Collection parameters(){
         return Arrays.asList(new Object[][]{
-                {0, 1},
-                {0, BookieProtocol.LAST_ADD_CONFIRMED},
+                {-1, -1, true, false},
+                {-1, 0, true, false},
+                {-1, 6, true, false},
+                {-1, BookieProtocol.LAST_ADD_CONFIRMED, true, false},
+                //{0, -1, false, true},
+                {0,-2, false, true},
+                {0, 1, false, false},
+                {0, 6, true, false},
+                {0, BookieProtocol.LAST_ADD_CONFIRMED, false, false},
+                {2, -1, true, false},
+                {2, 0, true, false},
+                {2, 6, true, false},
+                {2, BookieProtocol.LAST_ADD_CONFIRMED, true, false}
+
         });
     }
 
@@ -78,7 +90,7 @@ public class BisLedgerStorageTest {
         return entry;
     }
 
-    private void configure(long ledgerId, long entryId) throws Exception {
+    private void configure(long ledgerId, long entryId, boolean expected, boolean outOfBound) throws Exception {
         File tmpDir = File.createTempFile("bkTest", ".dir");
         tmpDir.delete();
         tmpDir.mkdir();
@@ -97,7 +109,7 @@ public class BisLedgerStorageTest {
         interleavedStorage.setCheckpointSource(checkpointSource);
         for (long eId = 0; eId < numOfEntries; eId++) {
             for (long lId = 0; lId < numOfLedgers; lId++) {
-                if (eId == 0) {
+               if (eId == 0) {
                     interleavedStorage.setMasterKey(lId, ("ledger-" + lId).getBytes());
                     interleavedStorage.setFenced(lId);
                 }
@@ -105,39 +117,29 @@ public class BisLedgerStorageTest {
 
                 interleavedStorage.addEntry(entry);
             }
-        }
-
-        this.ledgerId = ledgerId;
-        this.entryId = entryId;
-        this.expected = true;
-    }
-    private File findFile(long logId) throws FileNotFoundException {
-        for (File d : ledgerDirsManager.getAllLedgerDirs()) {
-            File f = new File(d, Long.toHexString(logId) + ".log");
-            if (f.exists()) {
-                return f;
             }
-        }
-        throw new FileNotFoundException("No file for log " + Long.toHexString(logId));
-    }
 
-    static long logIdForOffset(long offset) {
-        return offset >> 32L;
-    }
+            this.ledgerId = ledgerId;
+            this.entryId = entryId;
+            this.expected = expected || outOfBound;
+            this.outOfBound = outOfBound;
+        }
+
     @Test
     public void test() {
-        try{
-            if(entryId == BookieProtocol.LAST_ADD_CONFIRMED) entryId = 5;
-            LedgerCache ledgerCache = interleavedStorage.getLedgerCache();
-            long location = ledgerCache.getEntryOffset(ledgerId, entryId);
-            long entryLogId = logIdForOffset(location);
-            File file = findFile(entryLogId);
-            file.delete();
-            ByteBuf result = interleavedStorage.getEntry(ledgerId, entryId);
-            Assert.fail();
-        }catch(IOException e){
-            Assert.assertTrue(expected);
-        }
+       try{
+           ByteBuf result = interleavedStorage.getEntry(ledgerId, entryId);
+           ByteBuf expectedResult;
+           if(entryId==BookieProtocol.LAST_ADD_CONFIRMED) expectedResult = createEntry(ledgerId, 5);
+           else expectedResult = createEntry(ledgerId, entryId);
+           if(expected==true) Assert.fail();
+           Assert.assertEquals(expectedResult, result);
+       }catch(IOException e){
+           Assert.assertTrue(expected);
+       }
+       catch (IndexOutOfBoundsException e){
+           Assert.assertTrue(outOfBound);
+       }
     }
 
     @After

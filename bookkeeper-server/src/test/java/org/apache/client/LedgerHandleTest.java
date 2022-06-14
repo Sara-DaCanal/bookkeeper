@@ -1,4 +1,4 @@
-package org.apache;
+package org.apache.client;
 
 import org.apache.bookkeeper.client.*;
 import org.apache.client.utils.BookKeeperClusterTestCase;
