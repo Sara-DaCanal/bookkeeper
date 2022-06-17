@@ -429,13 +429,13 @@
             <version>${pitest.version}</version>
             <configuration>
               <targetClasses>
-                <param>org.apache.bookkeeper.client.LedgerHandle</param>
                 <param>org.apache.bookkeeper.bookie.InterleavedLedgerStorage</param>
                 <param>org.apache.bookkeeper.bookie.BookieStatus</param>
               </targetClasses>
               <targetTests>
                 <param>org.apache.bookkeeper.bookie.BookieStatusTest</param>
                 <param>org.apache.bookkeeper.bookie.BisBookieStatusTest</param>
+                <param>org.apache.bookkeeper.bookie.TrisBookieStatusTest</param>
                 <param>org.apache.bookkeeper.bookie.LedgerStorageTest</param>
                 <param>org.apache.bookkeeper.bookie.BisLedgerStorageTest</param>
                 <param>org.apache.bookkeeper.bookie.TrisLedgerStorageTest</param>
