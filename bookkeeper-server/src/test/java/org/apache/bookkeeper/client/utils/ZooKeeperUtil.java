@@ -1,4 +1,4 @@
-package org.apache.client.utils;
+package org.apache.bookkeeper.client.utils;
 
 
 import static java.nio.charset.StandardCharsets.UTF_8;

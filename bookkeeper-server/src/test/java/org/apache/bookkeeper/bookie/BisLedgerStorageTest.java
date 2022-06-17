@@ -1,13 +1,12 @@
-package org.apache.bookie;
+package org.apache.bookkeeper.bookie;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import org.apache.bookkeeper.bookie.*;
 import org.apache.bookkeeper.conf.ServerConfiguration;
 import org.apache.bookkeeper.proto.BookieProtocol;
 import org.apache.bookkeeper.util.DiskChecker;
-import org.apache.client.utils.TestBKConfiguration;
-import org.apache.client.utils.TestStatsProvider;
+import org.apache.bookkeeper.client.utils.TestBKConfiguration;
+import org.apache.bookkeeper.client.utils.TestStatsProvider;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;

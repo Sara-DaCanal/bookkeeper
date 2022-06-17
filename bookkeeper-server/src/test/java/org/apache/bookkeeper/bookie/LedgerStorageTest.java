@@ -1,13 +1,12 @@
-package org.apache.bookie;
+package org.apache.bookkeeper.bookie;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import org.apache.bookkeeper.bookie.*;
 import org.apache.bookkeeper.conf.ServerConfiguration;
 import org.apache.bookkeeper.proto.BookieProtocol;
 import org.apache.bookkeeper.util.DiskChecker;
-import org.apache.client.utils.TestBKConfiguration;
-import org.apache.client.utils.TestStatsProvider;
+import org.apache.bookkeeper.client.utils.TestBKConfiguration;
+import org.apache.bookkeeper.client.utils.TestStatsProvider;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -23,33 +22,34 @@ import java.util.Collection;
 import static org.apache.bookkeeper.bookie.BookKeeperServerStats.BOOKIE_SCOPE;
 
 @RunWith(Parameterized.class)
-public class TrisLedgerStorageTest {
+public class LedgerStorageTest {
     TestStatsProvider statsProvider = new TestStatsProvider();
     ServerConfiguration conf = TestBKConfiguration.newServerConfiguration();
     LedgerDirsManager ledgerDirsManager;
     InterleavedLedgerStorage interleavedStorage = new InterleavedLedgerStorage();
+    final long numOfEntries = 6;
+    final long numOfLedgers = 2;
     private long ledgerId;
     private long entryId;
     private boolean expected;
     private boolean outOfBound;
 
-    public TrisLedgerStorageTest(long ledgerId, long entryId, boolean expected, boolean outOfBound) throws Exception {
+    public LedgerStorageTest(long ledgerId, long entryId, boolean expected, boolean outOfBound) throws Exception {
         configure(ledgerId, entryId, expected, outOfBound);
     }
 
     @Parameterized.Parameters
     public static Collection parameters(){
         return Arrays.asList(new Object[][]{
-
                 {-1, -1, true, false},
                 {-1, 0, true, false},
                 {-1, 6, true, false},
                 {-1, BookieProtocol.LAST_ADD_CONFIRMED, true, false},
                 //{0, -1, false, true},
-                {0,-2, true, true},
-                {0, 1, true, false},
+                {0,-2, false, true},
+                {0, 1, false, false},
                 {0, 6, true, false},
-                {0, BookieProtocol.LAST_ADD_CONFIRMED, true, false},
+                {0, BookieProtocol.LAST_ADD_CONFIRMED, false, false},
                 {2, -1, true, false},
                 {2, 0, true, false},
                 {2, 6, true, false},
@@ -106,26 +106,39 @@ public class TrisLedgerStorageTest {
                 statsProvider.getStatsLogger(BOOKIE_SCOPE));
         interleavedStorage.setCheckpointer(checkpointer);
         interleavedStorage.setCheckpointSource(checkpointSource);
-        interleavedStorage.setMasterKey(0, "ledger_0".getBytes());
-        interleavedStorage.setFenced(0);
+        for (long eId = 0; eId < numOfEntries; eId++) {
+            for (long lId = 0; lId < numOfLedgers; lId++) {
+               if (eId == 0) {
+                    interleavedStorage.setMasterKey(lId, ("ledger-" + lId).getBytes());
+                    interleavedStorage.setFenced(lId);
+                }
+                ByteBuf entry = createEntry(lId, eId);
 
-        this.ledgerId = ledgerId;
-        this.entryId = entryId;
-        this.expected = expected || outOfBound;
-        this.outOfBound = outOfBound;
-    }
+                interleavedStorage.addEntry(entry);
+            }
+            }
+
+            this.ledgerId = ledgerId;
+            this.entryId = entryId;
+            this.expected = expected || outOfBound;
+            this.outOfBound = outOfBound;
+        }
 
     @Test
     public void test() {
-        try{
-            ByteBuf result = interleavedStorage.getEntry(ledgerId, entryId);
-            if(expected==true) Assert.fail();
-        }catch(IOException e){
-            Assert.assertTrue(expected);
-        }
-        catch (IndexOutOfBoundsException e){
-            Assert.assertTrue(outOfBound);
-        }
+       try{
+           ByteBuf result = interleavedStorage.getEntry(ledgerId, entryId);
+           ByteBuf expectedResult;
+           if(entryId==BookieProtocol.LAST_ADD_CONFIRMED) expectedResult = createEntry(ledgerId, 5);
+           else expectedResult = createEntry(ledgerId, entryId);
+           if(expected==true) Assert.fail();
+           Assert.assertEquals(expectedResult, result);
+       }catch(IOException e){
+           Assert.assertTrue(expected);
+       }
+       catch (IndexOutOfBoundsException e){
+           Assert.assertTrue(outOfBound);
+       }
     }
 
     @After
@@ -133,4 +146,3 @@ public class TrisLedgerStorageTest {
         interleavedStorage.shutdown();
     }
 }
-

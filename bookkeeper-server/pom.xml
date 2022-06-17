@@ -330,7 +330,7 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
             <configuration>
-              <skipTests>true</skipTests>
+              <skipTests>false</skipTests>
             </configuration>
           </plugin>
         </plugins>
@@ -412,6 +412,52 @@
         </plugins>
       </build>
     </profile>
+    <profile>
+      <id>mutation-coverage</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <withHistory>true</withHistory>
+        <pitest.version>1.8.0</pitest.version>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>${pitest.version}</version>
+            <configuration>
+              <targetClasses>
+                <param>org.apache.bookkeeper.client.LedgerHandle</param>
+                <param>org.apache.bookkeeper.bookie.InterleavedLedgerStorage</param>
+                <param>org.apache.bookkeeper.bookie.BookieStatus</param>
+              </targetClasses>
+              <targetTests>
+                <param>org.apache.bookkeeper.bookie.BookieStatusTest</param>
+                <param>org.apache.bookkeeper.bookie.BisBookieStatusTest</param>
+                <param>org.apache.bookkeeper.bookie.LedgerStorageTest</param>
+                <param>org.apache.bookkeeper.bookie.BisLedgerStorageTest</param>
+                <param>org.apache.bookkeeper.bookie.TrisLedgerStorageTest</param>
+              </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>org.slf4j</avoidCallsTo>
+              </avoidCallsTo>
+            </configuration>
+            <executions>
+              <execution>
+                <id>Generate PIT report</id>
+                <phase>test-compile</phase>
+                <goals>
+                  <goal>mutationCoverage</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
 
 
   </profiles>

@@ -1,7 +1,6 @@
-package org.apache.client;
+package org.apache.bookkeeper.client;
 
-import org.apache.bookkeeper.client.*;
-import org.apache.client.utils.BookKeeperClusterTestCase;
+import org.apache.bookkeeper.client.utils.BookKeeperClusterTestCase;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +14,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 
 @RunWith(Parameterized.class)
-public class LedgerHandleTest extends BookKeeperClusterTestCase{
+public class BisLedgerHandleTest extends BookKeeperClusterTestCase {
     private LedgerHandle lh;
     private byte[] data;
     private int offset;
@@ -30,7 +29,7 @@ public class LedgerHandleTest extends BookKeeperClusterTestCase{
     private static final Logger LOG = LoggerFactory.getLogger(LedgerHandleTest.class);
 
 
-    public LedgerHandleTest(Data data, int offset, int length, Cb cb, Exc isExceptionExpected) throws Exception {
+    public BisLedgerHandleTest(Data data, int offset, int length, Cb cb, Exc isExceptionExpected) throws Exception {
         super(3);
         configure(data, offset, length, cb, isExceptionExpected);
     }
@@ -38,7 +37,7 @@ public class LedgerHandleTest extends BookKeeperClusterTestCase{
     @Parameterized.Parameters
     public static Collection parameters(){
         return Arrays.asList(new Object[][]{
-                {Data.NULL, 0, 1, Cb.VALID, Exc.NULL},
+               /* {Data.NULL, 0, 1, Cb.VALID, Exc.NULL},
                 {Data.VOID, 0, 1, Cb.VALID, Exc.OUT_OF_BOUND},
                 {Data.LENGTH1, 0, 1, Cb.NULL, Exc.NULL},
                 {Data.LENGTH1, 0, 1, Cb.VALID, Exc.NO_EXC},
@@ -49,7 +48,7 @@ public class LedgerHandleTest extends BookKeeperClusterTestCase{
                 {Data.LENGTH4, 1, 2, Cb.VALID, Exc.NO_EXC},
                 {Data.LENGTH4, -1, 0, Cb.VALID, Exc.OUT_OF_BOUND},
                 {Data.LENGTH4, 0, -1, Cb.VALID, Exc.OUT_OF_BOUND},
-                {Data.LENGTH4, 0, 5, Cb.VALID, Exc.OUT_OF_BOUND}
+                {Data.LENGTH4, 0, 5, Cb.VALID, Exc.OUT_OF_BOUND}*/
         });
     }
 
@@ -57,7 +56,7 @@ public class LedgerHandleTest extends BookKeeperClusterTestCase{
         setUp();
         lh = bkc.createLedger(BookKeeper.DigestType.CRC32,
                 TEST_LEDGER_PASSWORD);
-        //startNewBookie();
+        startNewBookie();
         this.offset=offset;
         this.length=length;
         this.ctx = null;
@@ -109,19 +108,20 @@ public class LedgerHandleTest extends BookKeeperClusterTestCase{
 
     @Test
     public void test() {
-       try{
-           if(data.length==1 && offset==0) bkc.close();
-           lh.asyncAddEntry(this.data, this.offset, this.length, this.cb, this.ctx);
-           Assert.assertFalse(isArrayIndexExceptionExpected || isNullPointerExpected);
-       }catch (NullPointerException e){
-           Assert.assertTrue(isNullPointerExpected);
-       }catch (ArrayIndexOutOfBoundsException e) {
-           Assert.assertTrue(isArrayIndexExceptionExpected);
-       } catch (BKException e) {
-           e.printStackTrace();
-       } catch (InterruptedException e) {
-           e.printStackTrace();
-       }
+        try{
+            if(data.length==1 && offset==0) bkc.close();
+            lh.close();
+            lh.asyncAddEntry(this.data, this.offset, this.length, this.cb, this.ctx);
+            Assert.assertFalse(isArrayIndexExceptionExpected || isNullPointerExpected);
+        }catch (NullPointerException e){
+            Assert.assertTrue(isNullPointerExpected);
+        }catch (ArrayIndexOutOfBoundsException e) {
+            Assert.assertTrue(isArrayIndexExceptionExpected);
+        } catch (BKException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private enum Data{
@@ -137,3 +137,4 @@ public class LedgerHandleTest extends BookKeeperClusterTestCase{
 
 
 }
+

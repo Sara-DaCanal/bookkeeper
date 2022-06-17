@@ -63,8 +63,8 @@ class ClientInternalConf {
         return new ClientInternalConf(conf, featureProvider);
     }
 
-    private ClientInternalConf(ClientConfiguration conf,
-                               FeatureProvider featureProvider) {
+    ClientInternalConf(ClientConfiguration conf,
+                       FeatureProvider featureProvider) {
         this.explicitLacInterval = conf.getExplictLacInterval();
         this.enableReorderReadSequence = conf.isReorderReadSequenceEnabled();
         this.enableParallelRecoveryRead = conf.getEnableParallelRecoveryRead();
