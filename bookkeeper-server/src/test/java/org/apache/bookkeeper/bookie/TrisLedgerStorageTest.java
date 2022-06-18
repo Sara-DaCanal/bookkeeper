@@ -80,13 +80,6 @@ public class TrisLedgerStorageTest {
         }
     };
 
-    private ByteBuf createEntry(long lId, long eId){
-        ByteBuf entry = Unpooled.buffer(128);
-        entry.writeLong(lId);
-        entry.writeLong(eId);
-        entry.writeBytes(("entry-" + eId).getBytes());
-        return entry;
-    }
 
     private void configure(long ledgerId, long entryId, boolean expected, boolean outOfBound) throws Exception {
         File tmpDir = File.createTempFile("bkTest", ".dir");

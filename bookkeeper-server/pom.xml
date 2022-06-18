@@ -436,9 +436,11 @@
                 <param>org.apache.bookkeeper.bookie.BookieStatusTest</param>
                 <param>org.apache.bookkeeper.bookie.BisBookieStatusTest</param>
                 <param>org.apache.bookkeeper.bookie.TrisBookieStatusTest</param>
+                <param>org.apache.bookkeeper.bookie.BookieStatusPITTest</param>
                 <param>org.apache.bookkeeper.bookie.LedgerStorageTest</param>
                 <param>org.apache.bookkeeper.bookie.BisLedgerStorageTest</param>
                 <param>org.apache.bookkeeper.bookie.TrisLedgerStorageTest</param>
+                <param>org.apache.bookkeeper.bookie.LedgerStoragePITTest</param>
               </targetTests>
               <avoidCallsTo>
                 <avoidCallsTo>org.slf4j</avoidCallsTo>

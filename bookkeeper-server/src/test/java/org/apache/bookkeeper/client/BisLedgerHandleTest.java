@@ -37,7 +37,7 @@ public class BisLedgerHandleTest extends BookKeeperClusterTestCase {
     @Parameterized.Parameters
     public static Collection parameters(){
         return Arrays.asList(new Object[][]{
-               /* {Data.NULL, 0, 1, Cb.VALID, Exc.NULL},
+                {Data.NULL, 0, 1, Cb.VALID, Exc.NULL},
                 {Data.VOID, 0, 1, Cb.VALID, Exc.OUT_OF_BOUND},
                 {Data.LENGTH1, 0, 1, Cb.NULL, Exc.NULL},
                 {Data.LENGTH1, 0, 1, Cb.VALID, Exc.NO_EXC},
@@ -48,7 +48,7 @@ public class BisLedgerHandleTest extends BookKeeperClusterTestCase {
                 {Data.LENGTH4, 1, 2, Cb.VALID, Exc.NO_EXC},
                 {Data.LENGTH4, -1, 0, Cb.VALID, Exc.OUT_OF_BOUND},
                 {Data.LENGTH4, 0, -1, Cb.VALID, Exc.OUT_OF_BOUND},
-                {Data.LENGTH4, 0, 5, Cb.VALID, Exc.OUT_OF_BOUND}*/
+                {Data.LENGTH4, 0, 5, Cb.VALID, Exc.OUT_OF_BOUND}
         });
     }
 
